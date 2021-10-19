@@ -1,15 +1,13 @@
 const INITIAL_STATE = {
-  wallet: {
-    currencies: [],
-    expenses: [],
-  },
+  currencies: [],
+  expenses: [],
 };
 
 function wallet(state = INITIAL_STATE, action) {
   switch (action.type) {
   case 'STORE_EXPENSE':
     return (
-      { ...state, wallet: { expenses: [...state.wallet.expenses, action.expenses] } }
+      { ...state, expenses: [...state.expenses, action.expense] }
     );
   default:
     return state;
