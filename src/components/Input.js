@@ -6,7 +6,7 @@ class Input extends React.Component {
     const { text, id, handle, value } = this.props;
     return (
       <label htmlFor={ id }>
-        { text }
+        <p>{ text }</p>
         <input type="text" id={ id } onChange={ handle } value={ value } />
       </label>
     );

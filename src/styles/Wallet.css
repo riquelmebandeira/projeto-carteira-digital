@@ -3,12 +3,21 @@
   color: white;
   display: flex;
   font-family: Verdana, Geneva, Tahoma, sans-serif;
-  justify-content: space-between;
+  font-size: smaller;
+  justify-content: center;
   padding: 20px;
 }
 
-.expense-form > label {
-  font-size: small;
+.expense-form label {
+  align-items: center;
+  display: flex;
+  gap: 5px;
+  margin-right: 15px;
+}
+
+.expense-form button {
+  align-self: center;
+  height: fit-content;
 }
 
 table {
