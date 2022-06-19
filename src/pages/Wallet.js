@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import { Input, Select, Table, Button, Header } from '../components';
 import getCurrencies from '../services/api';
-import { storeExpenseWithExchange as storeExpenseAction,
+import { storeWithExchanges as storeExpenseAction,
   updateExpense as updateExpenseAction } from '../redux/actions/index';
 import { PAYMENT_OPTIONS, EXPENSE_CATEGORY,
   INITIAL_STATE, getTotalExpense } from '../utils';

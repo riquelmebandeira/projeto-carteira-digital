@@ -15,9 +15,9 @@ const INITIAL_STATE = {
   tag: 'Alimentação',
 };
 
-getTotalExpense = (expenses) => {
-  const allExpenses = expenses.map(({ value, exchangeRate }) => {
-    const exchange = exchangeRate.ask;
+const getTotalExpense = (expenses) => {
+  const allExpenses = expenses.map(({ value, currency, exchangeRates }) => {
+    const exchange = exchangeRates[currency].ask;
     return value * exchange;
   });
 

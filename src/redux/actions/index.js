@@ -6,11 +6,10 @@ export const deleteExpense = (id) => ({ type: 'DELETE_EXPENSE', id });
 
 export const updateExpense = (expense) => ({ type: 'UPDATE_EXPENSE', expense });
 
-export function storeExpenseWithExchange(expense) {
+export function storeWithExchanges(expense) {
   return async (dispatch) => {
-    let exchangeRate = await fetch('https://economia.awesomeapi.com.br/json/all');
-    exchangeRate = await exchangeRate.json();
-    exchangeRate = exchangeRate[expense.currency];
-    return dispatch(storeExpense({ ...expense, exchangeRate }));
+    let exchangeRates = await fetch('https://economia.awesomeapi.com.br/json/all');
+    exchangeRates = await exchangeRates.json();
+    return dispatch(storeExpense({ ...expense, exchangeRates }));
   };
 }

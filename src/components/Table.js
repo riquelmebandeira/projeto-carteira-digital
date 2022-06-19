@@ -23,8 +23,9 @@ class Table extends Component {
         <tbody>
           {
             expenses.map((expense) => {
-              const currencyNames = expense.exchangeRate.name.split('/'); // O formato da chave exchanteRate.name é: Moeda/Moeda de conversão.
-              const exchange = expense.exchangeRate.ask; // Esta é a taxa de câmbio utilizada.
+              const exchange = expense.exchangeRates[expense.currency];
+              const currencyNames = exchange.name.split('/'); // O formato da chave exchange.name é: Moeda/Moeda de conversão.
+              const exchangeRate = exchange.ask; // Esta é a taxa de câmbio utilizada.
               return (
                 <tr key={ expense.id }>
                   <td>{expense.description}</td>
@@ -32,8 +33,8 @@ class Table extends Component {
                   <td>{expense.method}</td>
                   <td>{(+expense.value).toFixed(2)}</td>
                   <td>{currencyNames[0]}</td>
-                  <td>{(+exchange).toFixed(2)}</td>
-                  <td>{(expense.value * exchange).toFixed(2)}</td>
+                  <td>{(+exchangeRate).toFixed(2)}</td>
+                  <td>{(expense.value * exchangeRate).toFixed(2)}</td>
                   <td>{currencyNames[1]}</td>
                   <td>
                     <Button text="Editar" onClick={ () => editExpense(expense) } />
