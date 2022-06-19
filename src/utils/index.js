@@ -27,7 +27,7 @@ const getTotalExpense = (expenses) => {
 const activateButton = (object) => (
   // A operação abaixo verifica se todas as propriedades do objeto são verdadeiras, e portanto, estão preenchidas.
   // Caso não estejam, será retornado 'false', e o operador '!' converterá para 'true', assim desabilitando o botão.
-  !Object.values({ ...object, id: true, isEditing: true }).every(Boolean)
+  !Object.values({ ...object, id: true, isEditing: true, editingId: true }).every(Boolean)
 );
 
 module.exports = {

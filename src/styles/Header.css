@@ -1,8 +1,15 @@
+@import url('https://fonts.googleapis.com/css2?family=Carter+One&family=Days+One&family=Epilogue:wght@100&family=Merriweather+Sans:wght@500&display=swap') ;
+
 header {
-  align-items: baseline;
+  align-items: center;
   display: flex;
   justify-content: space-between;
   padding: 0 40px;
+}
+
+header h2 {
+  font-family: Days One , sans-serif;
+  font-weight: 100;
 }
 
 .user-data {
@@ -12,6 +19,8 @@ header {
 header div {
   align-items: center;
   display: flex;
+  font-family: Verdana, Geneva, Tahoma, sans-serif;
+  font-size: small;
   font-weight: 600;
   gap: 5px;
 }

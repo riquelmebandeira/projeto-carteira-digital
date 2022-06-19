@@ -9,7 +9,7 @@ class Header extends React.Component {
       <header>
         <h2>Carteira Digital</h2>
         <div className="user-data">
-          <p data-testid="email-field">{`Email: ${email}`}</p>
+          <p>{`Email: ${email}`}</p>
           <div>
             <p>{`Despesa Total: R$ ${totalExpense.toFixed(2)}`}</p>
             <span>BRL</span>

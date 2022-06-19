@@ -7,6 +7,7 @@ import { storeWithExchanges as storeExpenseAction,
   updateExpense as updateExpenseAction } from '../redux/actions/index';
 import { PAYMENT_OPTIONS, EXPENSE_CATEGORY,
   INITIAL_STATE, getTotalExpense, activateButton } from '../utils';
+import '../styles/Wallet.css';
 
 class Wallet extends React.Component {
   constructor() {

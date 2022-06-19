@@ -1,0 +1,33 @@
+form {
+  background-color: #272a33;
+  color: white;
+  display: flex;
+  font-family: Verdana, Geneva, Tahoma, sans-serif;
+  justify-content: space-between;
+  padding: 20px;
+}
+
+form > label {
+  font-size: small;
+}
+
+table {
+  border-collapse: collapse;
+  width: 100%;
+}
+
+thead tr th {
+  background-color: #31393e;
+  color: white;
+  font-family: Verdana, Geneva, Tahoma, sans-serif;
+  font-size: small;
+  padding: 16px 20px;
+}
+
+tbody tr {
+  color: #272a33;
+  font-family: Verdana, Geneva, Tahoma, sans-serif;
+  font-size: small;
+  height: 60px;
+  text-align: center;
+}
