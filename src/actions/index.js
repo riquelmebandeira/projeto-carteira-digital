@@ -2,10 +2,11 @@ export const storeEmailAction = (userEmail) => ({ type: 'STORE_EMAIL', userEmail
 
 export const storeExpense = (expense) => ({ type: 'STORE_EXPENSE', expense });
 
-export function getExchangesAndStoreExpense(expense) {
+export function getExchangeAndStoreExpense(expense) {
   return async (dispatch) => {
-    let exchangeRates = await fetch('https://economia.awesomeapi.com.br/json/all');
-    exchangeRates = await exchangeRates.json();
-    return dispatch(storeExpense({ ...expense, exchangeRates }));
+    let exchangeRate = await fetch('https://economia.awesomeapi.com.br/json/all');
+    exchangeRate = await exchangeRate.json();
+    exchangeRate = exchangeRate[expense.currency];
+    return dispatch(storeExpense({ ...expense, exchangeRate }));
   };
 }

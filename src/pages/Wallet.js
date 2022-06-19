@@ -4,7 +4,7 @@ import PropTypes from 'prop-types';
 import Select from '../components/Select';
 import Input from '../components/Input';
 import getCurrencies from '../services/api';
-import { getExchangesAndStoreExpense as storeExpenseAction } from '../actions/index';
+import { getExchangeAndStoreExpense as storeExpenseAction } from '../actions/index';
 import Header from '../components/Header';
 
 const PAYMENT_OPTIONS = ['Dinheiro', 'Cartão de crédito', 'Cartão de débito'];
@@ -59,14 +59,16 @@ class Wallet extends React.Component {
     const { userEmail, expenses } = this.props;
     const { currencies } = this.state;
     let totalExpense = 0;
+
     if (expenses.length > 0) {
-      const allExpenses = expenses.map(({ value, currency, exchangeRates }) => {
-        const exchange = exchangeRates[currency].ask;
+      const allExpenses = expenses.map(({ value, exchangeRate }) => {
+        const exchange = exchangeRate.ask;
         return value * exchange;
       });
       const reducer = (previousValue, currentValue) => previousValue + currentValue;
       totalExpense = allExpenses.reduce(reducer);
     }
+
     return (
       <div>
         <Header email={ userEmail } totalExpense={ totalExpense } />
