@@ -6,9 +6,7 @@ import Input from '../components/Input';
 import getCurrencies from '../services/api';
 import { getExchangeAndStoreExpense as storeExpenseAction } from '../actions/index';
 import Header from '../components/Header';
-
-const PAYMENT_OPTIONS = ['Dinheiro', 'Cartão de crédito', 'Cartão de débito'];
-const EXPENSE_CATEGORY = ['Alimentação', 'Lazer', 'Trabalho', 'Transporte', 'Saúde'];
+import { PAYMENT_OPTIONS, EXPENSE_CATEGORY } from '../utils';
 
 class Wallet extends React.Component {
   constructor() {
