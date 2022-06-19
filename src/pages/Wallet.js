@@ -3,66 +3,85 @@ import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import { Input, Select, Table, Button, Header } from '../components';
 import getCurrencies from '../services/api';
-import { getExchangeAndStoreExpense as storeExpenseAction } from '../redux/actions/index';
+import { storeExpenseWithExchange as storeExpenseAction,
+  updateExpense as updateExpenseAction } from '../redux/actions/index';
 import { PAYMENT_OPTIONS, EXPENSE_CATEGORY, INITIAL_STATE } from '../utils';
 
 class Wallet extends React.Component {
   constructor() {
     super();
     this.state = INITIAL_STATE;
-    this.handleChange = this.handleChange.bind(this);
-    this.handleClick = this.handleClick.bind(this);
   }
 
   componentDidMount() {
     getCurrencies()
       .then((response) => {
-        const currencies = Object.keys(response);
-        const indexToRemove = currencies.indexOf('USDT');
-        currencies.splice(indexToRemove, 1);
+        const currencies = Object.keys(response).filter((c) => c !== 'USDT');
         this.setState({
           currencies,
         });
       });
   }
 
-  getTotalExpense(expenses) {
+  getTotalExpense = (expenses) => {
     const allExpenses = expenses.map(({ value, exchangeRate }) => {
       const exchange = exchangeRate.ask;
       return value * exchange;
     });
 
-    const reducer = (previousValue, currentValue) => previousValue + currentValue;
-    return allExpenses.reduce(reducer);
+    return allExpenses.reduce((sum, expense) => sum + expense, 0);
   }
 
-  handleClick(event) {
-    event.preventDefault();
+  create = () => {
     const { storeExpense } = this.props;
-    const expense = { ...this.state };
-    delete expense.currencies;
-    storeExpense({ ...expense });
+    const { currencies, ...data } = this.state;
+    storeExpense(data);
+
     this.setState((prevState) => ({
       ...INITIAL_STATE,
       id: prevState.id + 1,
     }));
   }
 
-  handleChange({ target }) {
+  handleChange = ({ target }) => {
     this.setState({
       [target.id]: target.value,
     });
   }
 
+  editExpense = (expense) => {
+    // O id da tarefa em edição é salvo numa chave diferete, para não perder a contagem normal dos ids.
+    const { id: editingId, ...data } = expense;
+
+    this.setState({
+      ...data,
+      editingId,
+      isEditing: true,
+    });
+  }
+
+  update = () => {
+    const { updateExpense } = this.props;
+    const { currencies, isEditing, id, editingId, ...data } = this.state;
+    const expense = { ...data, id: editingId };
+    updateExpense(expense);
+
+    this.setState({
+      ...INITIAL_STATE,
+      id,
+      isEditing: false,
+    });
+  }
+
   render() {
     const { userEmail, expenses } = this.props;
-    const { currencies, value, description } = this.state;
+    const { currencies, value, description, isEditing } = this.state;
     const totalExpense = expenses.length > 0 ? this.getTotalExpense(expenses) : 0;
 
     return (
       <div>
         <Header email={ userEmail } totalExpense={ totalExpense } />
-        <section>
+        <main>
           <form>
             <Input text="Valor" id="value" handle={ this.handleChange } value={ value } />
             <Input
@@ -89,17 +108,16 @@ class Wallet extends React.Component {
               options={ EXPENSE_CATEGORY }
               handle={ this.handleChange }
             />
-            <Button
-              onClick={ this.handleClick }
-              text="Adicionar despesa"
-              // A operação abaixo verifica se todas as chaves do estado são verdadeiras, e portanto, estão preenchidas.
-              // Caso não estejam, será retornado 'false', e o operador '!' converterá para 'true', assim desabilitando o botão.
-              disabled={ !Object.values({ ...this.state, id: true }).every(Boolean) }
-            />
+            {
+              isEditing ? <Button text="Editar gasto" onClick={ () => this.update() } />
+                : (
+                  <Button
+                    onClick={ this.create }
+                    text="Adicionar despesa"
+                  />)
+            }
           </form>
-        </section>
-        <main>
-          <Table expenses={ expenses } />
+          <Table expenses={ expenses } editExpense={ this.editExpense } />
         </main>
       </div>
     );
@@ -113,11 +131,13 @@ const mapStateToProps = (state) => ({
 
 const mapDispatchToProps = (dispatch) => ({
   storeExpense: (expense) => dispatch(storeExpenseAction(expense)),
+  updateExpense: (expense) => dispatch(updateExpenseAction(expense)),
 });
 
 Wallet.propTypes = {
   userEmail: PropTypes.string.isRequired,
   storeExpense: PropTypes.func.isRequired,
+  updateExpense: PropTypes.func.isRequired,
   expenses: PropTypes.arrayOf(PropTypes.object).isRequired,
 };
 

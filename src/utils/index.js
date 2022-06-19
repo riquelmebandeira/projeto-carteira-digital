@@ -6,6 +6,7 @@ const PAYMENT_OPTIONS = ['Dinheiro', 'Cartão de crédito', 'Cartão de débito'
 const EXPENSE_CATEGORY = ['Alimentação', 'Lazer', 'Trabalho', 'Transporte', 'Saúde'];
 
 const INITIAL_STATE = {
+  isEditing: false,
   id: 0,
   value: '',
   description: '',

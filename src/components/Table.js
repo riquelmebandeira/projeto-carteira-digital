@@ -7,7 +7,7 @@ import Button from './Button';
 
 class Table extends Component {
   render() {
-    const { expenses, deleteExpense } = this.props;
+    const { expenses, deleteExpense, editExpense } = this.props;
 
     return (
       <table>
@@ -36,7 +36,7 @@ class Table extends Component {
                   <td>{(expense.value * exchange).toFixed(2)}</td>
                   <td>{currencyNames[1]}</td>
                   <td>
-                    <Button text="Editar" />
+                    <Button text="Editar" onClick={ () => editExpense(expense) } />
                     <Button
                       text="Excluir"
                       onClick={ () => deleteExpense(expense.id) }
@@ -59,6 +59,7 @@ const mapDispatchToProps = (dispatch) => ({
 Table.propTypes = {
   expenses: PropTypes.arrayOf(PropTypes.object).isRequired,
   deleteExpense: PropTypes.func.isRequired,
+  editExpense: PropTypes.func.isRequired,
 };
 
 export default connect(null, mapDispatchToProps)(Table);
