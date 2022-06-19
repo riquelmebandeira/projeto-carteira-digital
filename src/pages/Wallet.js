@@ -1,13 +1,9 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
-import Select from '../components/Select';
-import Input from '../components/Input';
-import Table from '../components/Table';
-import Button from '../components/Button';
+import { Input, Select, Table, Button, Header } from '../components';
 import getCurrencies from '../services/api';
 import { getExchangeAndStoreExpense as storeExpenseAction } from '../actions/index';
-import Header from '../components/Header';
 import { PAYMENT_OPTIONS, EXPENSE_CATEGORY } from '../utils';
 
 class Wallet extends React.Component {
