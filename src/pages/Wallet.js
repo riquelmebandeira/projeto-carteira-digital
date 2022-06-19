@@ -4,34 +4,26 @@ import PropTypes from 'prop-types';
 import { Input, Select, Table, Button, Header } from '../components';
 import getCurrencies from '../services/api';
 import { getExchangeAndStoreExpense as storeExpenseAction } from '../actions/index';
-import { PAYMENT_OPTIONS, EXPENSE_CATEGORY } from '../utils';
+import { PAYMENT_OPTIONS, EXPENSE_CATEGORY, INITIAL_STATE } from '../utils';
 
 class Wallet extends React.Component {
   constructor() {
     super();
-    this.state = {
-      id: 0,
-      value: '',
-      description: '',
-      currency: 'USD',
-      method: 'Dinheiro',
-      tag: 'Alimentação',
-    };
+    this.state = INITIAL_STATE;
     this.handleChange = this.handleChange.bind(this);
     this.handleClick = this.handleClick.bind(this);
   }
 
   componentDidMount() {
-    this.setCurrenciesOnState();
-  }
-
-  async setCurrenciesOnState() {
-    const currencies = Object.keys(await getCurrencies());
-    const indexOfElementToRemove = currencies.indexOf('USDT');
-    currencies.splice(indexOfElementToRemove, 1);
-    this.setState({
-      currencies,
-    });
+    getCurrencies()
+      .then((response) => {
+        const currencies = Object.keys(response);
+        const indexToRemove = currencies.indexOf('USDT');
+        currencies.splice(indexToRemove, 1);
+        this.setState({
+          currencies,
+        });
+      });
   }
 
   getTotalExpense(expenses) {
@@ -52,6 +44,7 @@ class Wallet extends React.Component {
     storeExpense({ ...expense });
     this.setState((prevState) => ({
       id: prevState.id + 1,
+      ...INITIAL_STATE,
     }));
   }
 
@@ -63,7 +56,7 @@ class Wallet extends React.Component {
 
   render() {
     const { userEmail, expenses } = this.props;
-    const { currencies } = this.state;
+    const { currencies, value, description } = this.state;
     const totalExpense = expenses.length > 0 ? this.getTotalExpense(expenses) : 0;
 
     return (
@@ -71,8 +64,13 @@ class Wallet extends React.Component {
         <Header email={ userEmail } totalExpense={ totalExpense } />
         <section>
           <form>
-            <Input name="Valor" id="value" handle={ this.handleChange } />
-            <Input name="Descrição" id="description" handle={ this.handleChange } />
+            <Input text="Valor" id="value" handle={ this.handleChange } value={ value } />
+            <Input
+              text="Descrição"
+              id="description"
+              handle={ this.handleChange }
+              value={ description }
+            />
             <Select
               name="Moeda"
               id="currency"

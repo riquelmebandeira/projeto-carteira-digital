@@ -5,8 +5,18 @@ const PAYMENT_OPTIONS = ['Dinheiro', 'Cartão de crédito', 'Cartão de débito'
 
 const EXPENSE_CATEGORY = ['Alimentação', 'Lazer', 'Trabalho', 'Transporte', 'Saúde'];
 
+const INITIAL_STATE = {
+  id: 0,
+  value: '',
+  description: '',
+  currency: 'USD',
+  method: 'Dinheiro',
+  tag: 'Alimentação',
+};
+
 module.exports = {
   TABLE_HEADERS,
   PAYMENT_OPTIONS,
   EXPENSE_CATEGORY,
+  INITIAL_STATE,
 };
