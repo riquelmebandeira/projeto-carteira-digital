@@ -3,6 +3,7 @@ import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import Select from '../components/Select';
 import Input from '../components/Input';
+import Table from '../components/Table';
 import getCurrencies from '../services/api';
 import { getExchangeAndStoreExpense as storeExpenseAction } from '../actions/index';
 import Header from '../components/Header';
@@ -95,6 +96,9 @@ class Wallet extends React.Component {
             <button type="submit" onClick={ this.handleClick }>Adicionar despesa</button>
           </form>
         </section>
+        <main>
+          <Table expenses={ expenses } />
+        </main>
       </div>
     );
   }
