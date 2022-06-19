@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import { Input, Select, Table, Button, Header } from '../components';
 import getCurrencies from '../services/api';
-import { getExchangeAndStoreExpense as storeExpenseAction } from '../actions/index';
+import { getExchangeAndStoreExpense as storeExpenseAction } from '../redux/actions/index';
 import { PAYMENT_OPTIONS, EXPENSE_CATEGORY, INITIAL_STATE } from '../utils';
 
 class Wallet extends React.Component {
