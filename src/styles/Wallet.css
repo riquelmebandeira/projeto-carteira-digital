@@ -1,4 +1,4 @@
-form {
+.expense-form {
   background-color: #272a33;
   color: white;
   display: flex;
@@ -7,7 +7,7 @@ form {
   padding: 20px;
 }
 
-form > label {
+.expense-form > label {
   font-size: small;
 }
 

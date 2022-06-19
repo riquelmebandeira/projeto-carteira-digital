@@ -2,6 +2,7 @@ import React from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import { storeEmailAction } from '../redux/actions/index';
+import '../styles/Login.css';
 
 class Login extends React.Component {
   constructor() {
@@ -55,8 +56,9 @@ class Login extends React.Component {
   render() {
     const { email, disabled } = this.state;
     return (
-      <main>
-        <section>
+      <main className="login-page">
+        <h2>Carteira Digital</h2>
+        <form className="login-form">
           <input
             type="email"
             placeholder="email"
@@ -77,7 +79,7 @@ class Login extends React.Component {
           >
             Entrar
           </button>
-        </section>
+        </form>
       </main>
     );
   }

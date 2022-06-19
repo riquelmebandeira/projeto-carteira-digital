@@ -75,7 +75,7 @@ class Wallet extends React.Component {
       <div>
         <Header email={ userEmail } totalExpense={ totalExpense } />
         <main>
-          <form>
+          <form className="expense-form">
             <Input text="Valor" id="value" handle={ this.handleChange } value={ value } />
             <Input
               text="Descrição"
