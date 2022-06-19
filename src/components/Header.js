@@ -1,14 +1,20 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import '../styles/Header.css';
 
 class Header extends React.Component {
   render() {
     const { email, totalExpense } = this.props;
     return (
       <header>
-        <p data-testid="email-field">{`Email: ${email}`}</p>
-        <p data-testid="total-field">{`Despesa Total: R$ ${totalExpense.toFixed(2)}`}</p>
-        <span data-testid="header-currency-field">BRL</span>
+        <h2>Carteira Digital</h2>
+        <div className="user-data">
+          <p data-testid="email-field">{`Email: ${email}`}</p>
+          <div>
+            <p>{`Despesa Total: R$ ${totalExpense.toFixed(2)}`}</p>
+            <span>BRL</span>
+          </div>
+        </div>
       </header>
     );
   }

@@ -1,0 +1,17 @@
+header {
+  align-items: baseline;
+  display: flex;
+  justify-content: space-between;
+  padding: 0 40px;
+}
+
+.user-data {
+  gap: 20px;
+}
+
+header div {
+  align-items: center;
+  display: flex;
+  font-weight: 600;
+  gap: 5px;
+}
