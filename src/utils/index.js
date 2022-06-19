@@ -24,10 +24,17 @@ const getTotalExpense = (expenses) => {
   return allExpenses.reduce((sum, expense) => sum + expense, 0);
 };
 
+const activateButton = (object) => (
+  // A operação abaixo verifica se todas as propriedades do objeto são verdadeiras, e portanto, estão preenchidas.
+  // Caso não estejam, será retornado 'false', e o operador '!' converterá para 'true', assim desabilitando o botão.
+  !Object.values({ ...object, id: true, isEditing: true }).every(Boolean)
+);
+
 module.exports = {
   TABLE_HEADERS,
   PAYMENT_OPTIONS,
   EXPENSE_CATEGORY,
   INITIAL_STATE,
   getTotalExpense,
+  activateButton,
 };

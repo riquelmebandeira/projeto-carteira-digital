@@ -6,7 +6,7 @@ import getCurrencies from '../services/api';
 import { storeWithExchanges as storeExpenseAction,
   updateExpense as updateExpenseAction } from '../redux/actions/index';
 import { PAYMENT_OPTIONS, EXPENSE_CATEGORY,
-  INITIAL_STATE, getTotalExpense } from '../utils';
+  INITIAL_STATE, getTotalExpense, activateButton } from '../utils';
 
 class Wallet extends React.Component {
   constructor() {
@@ -106,6 +106,7 @@ class Wallet extends React.Component {
                   <Button
                     onClick={ this.create }
                     text="Adicionar despesa"
+                    disabled={ activateButton(this.state) }
                   />)
             }
           </form>
