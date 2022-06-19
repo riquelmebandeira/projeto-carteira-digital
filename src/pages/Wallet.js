@@ -43,8 +43,8 @@ class Wallet extends React.Component {
     delete expense.currencies;
     storeExpense({ ...expense });
     this.setState((prevState) => ({
-      id: prevState.id + 1,
       ...INITIAL_STATE,
+      id: prevState.id + 1,
     }));
   }
 
