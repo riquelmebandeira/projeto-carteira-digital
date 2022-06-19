@@ -4,6 +4,7 @@ import PropTypes from 'prop-types';
 import Select from '../components/Select';
 import Input from '../components/Input';
 import Table from '../components/Table';
+import Button from '../components/Button';
 import getCurrencies from '../services/api';
 import { getExchangeAndStoreExpense as storeExpenseAction } from '../actions/index';
 import Header from '../components/Header';
@@ -37,10 +38,14 @@ class Wallet extends React.Component {
     });
   }
 
-  handleChange({ target }) {
-    this.setState({
-      [target.id]: target.value,
+  getTotalExpense(expenses) {
+    const allExpenses = expenses.map(({ value, exchangeRate }) => {
+      const exchange = exchangeRate.ask;
+      return value * exchange;
     });
+
+    const reducer = (previousValue, currentValue) => previousValue + currentValue;
+    return allExpenses.reduce(reducer);
   }
 
   handleClick(event) {
@@ -54,19 +59,16 @@ class Wallet extends React.Component {
     }));
   }
 
+  handleChange({ target }) {
+    this.setState({
+      [target.id]: target.value,
+    });
+  }
+
   render() {
     const { userEmail, expenses } = this.props;
     const { currencies } = this.state;
-    let totalExpense = 0;
-
-    if (expenses.length > 0) {
-      const allExpenses = expenses.map(({ value, exchangeRate }) => {
-        const exchange = exchangeRate.ask;
-        return value * exchange;
-      });
-      const reducer = (previousValue, currentValue) => previousValue + currentValue;
-      totalExpense = allExpenses.reduce(reducer);
-    }
+    const totalExpense = expenses.length > 0 ? this.getTotalExpense(expenses) : 0;
 
     return (
       <div>
@@ -93,7 +95,13 @@ class Wallet extends React.Component {
               options={ EXPENSE_CATEGORY }
               handle={ this.handleChange }
             />
-            <button type="submit" onClick={ this.handleClick }>Adicionar despesa</button>
+            <Button
+              onClick={ this.handleClick }
+              text="Adicionar despesa"
+              // A operação abaixo verifica se todas as chaves do estado são verdadeiras, e portanto, estão preenchidas.
+              // Caso não estejam, será retornado 'false', e o operador '!' converterá para 'true', assim desabilitando o botão.
+              disabled={ !Object.values({ ...this.state, id: true }).every(Boolean) }
+            />
           </form>
         </section>
         <main>
