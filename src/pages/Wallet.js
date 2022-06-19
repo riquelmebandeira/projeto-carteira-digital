@@ -5,7 +5,8 @@ import { Input, Select, Table, Button, Header } from '../components';
 import getCurrencies from '../services/api';
 import { storeExpenseWithExchange as storeExpenseAction,
   updateExpense as updateExpenseAction } from '../redux/actions/index';
-import { PAYMENT_OPTIONS, EXPENSE_CATEGORY, INITIAL_STATE } from '../utils';
+import { PAYMENT_OPTIONS, EXPENSE_CATEGORY,
+  INITIAL_STATE, getTotalExpense } from '../utils';
 
 class Wallet extends React.Component {
   constructor() {
@@ -21,15 +22,6 @@ class Wallet extends React.Component {
           currencies,
         });
       });
-  }
-
-  getTotalExpense = (expenses) => {
-    const allExpenses = expenses.map(({ value, exchangeRate }) => {
-      const exchange = exchangeRate.ask;
-      return value * exchange;
-    });
-
-    return allExpenses.reduce((sum, expense) => sum + expense, 0);
   }
 
   create = () => {
@@ -76,7 +68,7 @@ class Wallet extends React.Component {
   render() {
     const { userEmail, expenses } = this.props;
     const { currencies, value, description, isEditing } = this.state;
-    const totalExpense = expenses.length > 0 ? this.getTotalExpense(expenses) : 0;
+    const totalExpense = expenses.length > 0 ? getTotalExpense(expenses) : 0;
 
     return (
       <div>

@@ -15,9 +15,19 @@ const INITIAL_STATE = {
   tag: 'Alimentação',
 };
 
+getTotalExpense = (expenses) => {
+  const allExpenses = expenses.map(({ value, exchangeRate }) => {
+    const exchange = exchangeRate.ask;
+    return value * exchange;
+  });
+
+  return allExpenses.reduce((sum, expense) => sum + expense, 0);
+};
+
 module.exports = {
   TABLE_HEADERS,
   PAYMENT_OPTIONS,
   EXPENSE_CATEGORY,
   INITIAL_STATE,
+  getTotalExpense,
 };
