@@ -1,9 +1,10 @@
 import React from 'react';
+import '../styles/NotFound.css';
 
 class NotFound extends React.Component {
   render() {
     return (
-      <div>Página não encontrada</div>
+      <h1 className="not-found-text">Página não encontrada</h1>
     );
   }
 }
