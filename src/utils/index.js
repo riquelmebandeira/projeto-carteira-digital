@@ -30,11 +30,17 @@ const activateButton = (object) => (
   !Object.values({ ...object, id: true, isEditing: true, editingId: true }).every(Boolean)
 );
 
+const MIN_LENGTH = 6;
+
+const EMAIL_PATTERN = /\S+@\S+\.\S+/;
+
 module.exports = {
   TABLE_HEADERS,
   PAYMENT_OPTIONS,
   EXPENSE_CATEGORY,
   INITIAL_STATE,
+  MIN_LENGTH,
+  EMAIL_PATTERN,
   getTotalExpense,
   activateButton,
 };

@@ -3,50 +3,25 @@ import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import { storeEmailAction } from '../redux/actions/index';
 import '../styles/Login.css';
+import { MIN_LENGTH, EMAIL_PATTERN } from '../utils';
 
 class Login extends React.Component {
   constructor() {
     super();
     this.state = {
       email: '',
-      isValidPassword: false,
-      isValidEmail: false,
-      disabled: true,
+      password: '',
     };
-    this.handleChange = this.handleChange.bind(this);
-    this.handleClick = this.handleClick.bind(this);
   }
 
-  validateEmail(email) {
-    const re = /\S+@\S+\.\S+/;
-    return re.test(email);
+  handleChange = ({ target }) => {
+    this.setState({
+      [target.id]: target.value,
+    });
   }
 
-  handleChange({ target }) {
-    const MIN_PASSWORD_LENGTH = 6;
-    if (target.type === 'email') {
-      this.setState({
-        email: target.value,
-        isValidEmail: this.validateEmail(target.value),
-      }, () => this.enableButton());
-    }
-    if (target.type === 'password' && target.value.length >= MIN_PASSWORD_LENGTH) {
-      this.setState({
-        isValidPassword: true,
-      }, () => this.enableButton());
-    }
-  }
-
-  enableButton() {
-    const { isValidEmail, isValidPassword } = this.state;
-    if (isValidPassword === true && isValidEmail === true) {
-      this.setState({
-        disabled: false,
-      });
-    }
-  }
-
-  handleClick() {
+  handleClick(e) {
+    e.preventDefault();
     const { storeEmail, history } = this.props;
     const { email } = this.state;
     storeEmail(email);
@@ -54,7 +29,8 @@ class Login extends React.Component {
   }
 
   render() {
-    const { email, disabled } = this.state;
+    const { email, password } = this.state;
+
     return (
       <main className="login-page">
         <h2>Carteira Digital</h2>
@@ -62,20 +38,23 @@ class Login extends React.Component {
           <input
             type="email"
             placeholder="email"
-            data-testid="email-input"
+            id="email"
             onChange={ this.handleChange }
             value={ email }
           />
           <input
             type="password"
             placeholder="senha"
-            data-testid="password-input"
+            id="password"
             onChange={ this.handleChange }
+            value={ password }
           />
           <button
             type="submit"
-            disabled={ disabled }
-            onClick={ this.handleClick }
+            onClick={ (e) => this.handleClick(e) }
+            disabled={
+              password.length < MIN_LENGTH || !EMAIL_PATTERN.test(email)
+            }
           >
             Entrar
           </button>
