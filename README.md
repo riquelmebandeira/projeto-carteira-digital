@@ -3,11 +3,11 @@
 # Contexto
 Neste projeto foi desenvolvido uma carteira de controle de gastos com conversor de moedas, onde uma pessoa pode:
 
-Adicionar, remover e editar um gasto;
-Visualizar uma tabela com seus gastos;
-Visualizar o valor total gasto;
+* Adicionar, remover e editar um gasto;
+* Visualizar uma tabela com seus gastos;
+* Visualizar o valor total gasto;
 
-A conversão de valores é possível graças a API de cotações de moedas do AwesomeAPI, que abastece a aplicação.
+A conversão de valores é possível graças a API de cotações de moedas do **AwesomeAPI**, que abastece a aplicação.
 
 ![Preview da aplicação](preview.gif)
 
