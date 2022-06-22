@@ -1,3 +1,4 @@
+/* formulário de despesa */
 .expense-form {
   background-color: #272a33;
   color: white;
@@ -15,11 +16,39 @@
   margin-right: 15px;
 }
 
-.expense-form button {
-  align-self: center;
-  height: fit-content;
+.expense-form label input {
+  text-indent: 3px;
 }
 
+.expense-form label > input , select {
+  background-color: white;
+  border: none;
+  border-radius: 4px;
+  color: #686a6d;
+  height: 60%;
+}
+
+.expense-form button {
+  align-self: center;
+  background-color: #3c8fdc;
+  border: none;
+  border-radius: 4px;
+  color: white;
+  padding: 6px;
+}
+
+.expense-form button:disabled {
+  background-color: #6491bb;
+  color: rgb(199, 199, 199);
+}
+
+/* formulário de despesa no modo 'editar gasto' */
+.editing-true {
+  background-color: #00ae69;
+  color: rgb(15, 15, 15);
+}
+
+/* tabela de gastos */
 table {
   border-collapse: collapse;
   width: 100%;

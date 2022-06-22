@@ -5,8 +5,8 @@ import { Input, Select, Table, Button, Header } from '../components';
 import getCurrencies from '../services/api';
 import { storeWithExchanges as storeExpenseAction,
   updateExpense as updateExpenseAction } from '../redux/actions/index';
-import { PAYMENT_OPTIONS, EXPENSE_CATEGORY,
-  INITIAL_STATE, getTotalExpense, activateButton } from '../utils';
+import { PAY_OPTIONS, EXPENSE_TAGS, INITIAL_STATE,
+  getTotalSpend, enableButton } from '../utils';
 import '../styles/Wallet.css';
 
 class Wallet extends React.Component {
@@ -66,16 +66,17 @@ class Wallet extends React.Component {
     });
   }
 
+  // eslint-disable-next-line max-lines-per-function
   render() {
     const { userEmail, expenses } = this.props;
     const { currencies, value, description, isEditing } = this.state;
-    const totalExpense = expenses.length > 0 ? getTotalExpense(expenses) : 0;
+    const totalExpense = expenses.length > 0 ? getTotalSpend(expenses) : 0;
 
     return (
       <div>
         <Header email={ userEmail } totalExpense={ totalExpense } />
         <main>
-          <form className="expense-form">
+          <form className={ `expense-form editing-${isEditing}` }>
             <Input text="Valor" id="value" handle={ this.handleChange } value={ value } />
             <Input
               text="Descrição"
@@ -92,22 +93,26 @@ class Wallet extends React.Component {
             <Select
               name="Método de pagamento"
               id="method"
-              options={ PAYMENT_OPTIONS }
+              options={ PAY_OPTIONS }
               handle={ this.handleChange }
             />
             <Select
               name="Tag"
               id="tag"
-              options={ EXPENSE_CATEGORY }
+              options={ EXPENSE_TAGS }
               handle={ this.handleChange }
             />
             {
-              isEditing ? <Button text="Editar gasto" onClick={ () => this.update() } />
+              isEditing ? <Button
+                text="Editar gasto"
+                onClick={ this.update }
+                disabled={ enableButton(this.state) }
+              />
                 : (
                   <Button
                     onClick={ this.create }
                     text="Adicionar despesa"
-                    disabled={ activateButton(this.state) }
+                    disabled={ enableButton(this.state) }
                   />)
             }
           </form>
