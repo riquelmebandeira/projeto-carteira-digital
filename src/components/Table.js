@@ -4,6 +4,7 @@ import { connect } from 'react-redux';
 import { TABLE_HEADERS } from '../utils';
 import { deleteExpense as deleteExpenseAction } from '../redux/actions/index';
 import Button from './Button';
+import '../styles/Table.css';
 
 class Table extends Component {
   render() {
@@ -37,10 +38,15 @@ class Table extends Component {
                   <td>{(expense.value * exchangeRate).toFixed(2)}</td>
                   <td>{currencyNames[1]}</td>
                   <td>
-                    <Button text="Editar" onClick={ () => editExpense(expense) } />
+                    <Button
+                      text="Editar"
+                      onClick={ () => editExpense(expense) }
+                      className="expense-row-btn edit"
+                    />
                     <Button
                       text="Excluir"
                       onClick={ () => deleteExpense(expense.id) }
+                      className="expense-row-btn delete"
                     />
                   </td>
                 </tr>

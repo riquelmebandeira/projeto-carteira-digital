@@ -16,7 +16,14 @@
 }
 
 .login-form button {
+  background-color: #3c8fdc;
+  color: white;
   margin-top: 10px;
+}
+
+.login-form button:disabled {
+  background-color: #6491bb;
+  color: rgb(199, 199, 199);
 }
 
 .login-page {

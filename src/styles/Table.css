@@ -1,0 +1,40 @@
+table {
+  border-collapse: collapse;
+  width: 100%;
+}
+
+thead tr th {
+  background-color: #31393e;
+  color: white;
+  font-family: Verdana, Geneva, Tahoma, sans-serif;
+  font-size: small;
+  padding: 16px 20px;
+}
+
+tbody tr {
+  color: #272a33;
+  font-family: Verdana, Geneva, Tahoma, sans-serif;
+  font-size: small;
+  height: 60px;
+  text-align: center;
+}
+
+/* botões da tabela */
+.expense-row-btn {
+  border: none;
+  border-radius: 4px;
+  box-shadow: 0 1px 2px rgb(78, 78, 78);
+  color: rgb(39, 38, 38);
+  cursor: pointer;
+  font-weight: 600;
+  padding: 4px;
+}
+
+.edit {
+  margin-right: 6px;
+}
+
+.delete {
+  background-color: rgba(250, 56, 56, 0.836);
+}
+

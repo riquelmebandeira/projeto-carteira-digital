@@ -48,24 +48,3 @@
   color: rgb(15, 15, 15);
 }
 
-/* tabela de gastos */
-table {
-  border-collapse: collapse;
-  width: 100%;
-}
-
-thead tr th {
-  background-color: #31393e;
-  color: white;
-  font-family: Verdana, Geneva, Tahoma, sans-serif;
-  font-size: small;
-  padding: 16px 20px;
-}
-
-tbody tr {
-  color: #272a33;
-  font-family: Verdana, Geneva, Tahoma, sans-serif;
-  font-size: small;
-  height: 60px;
-  text-align: center;
-}
