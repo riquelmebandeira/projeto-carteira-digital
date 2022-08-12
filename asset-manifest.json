@@ -1,22 +1,22 @@
 {
   "files": {
-    "main.css": "/projeto-trybetunes/static/css/main.ac4e32d9.chunk.css",
-    "main.js": "/projeto-trybetunes/static/js/main.4cece734.chunk.js",
-    "main.js.map": "/projeto-trybetunes/static/js/main.4cece734.chunk.js.map",
-    "runtime-main.js": "/projeto-trybetunes/static/js/runtime-main.ef49c11a.js",
-    "runtime-main.js.map": "/projeto-trybetunes/static/js/runtime-main.ef49c11a.js.map",
-    "static/js/2.aae0a2d7.chunk.js": "/projeto-trybetunes/static/js/2.aae0a2d7.chunk.js",
-    "static/js/2.aae0a2d7.chunk.js.map": "/projeto-trybetunes/static/js/2.aae0a2d7.chunk.js.map",
-    "index.html": "/projeto-trybetunes/index.html",
-    "precache-manifest.50be62f33c564d488738d34516a2faff.js": "/projeto-trybetunes/precache-manifest.50be62f33c564d488738d34516a2faff.js",
-    "service-worker.js": "/projeto-trybetunes/service-worker.js",
-    "static/css/main.ac4e32d9.chunk.css.map": "/projeto-trybetunes/static/css/main.ac4e32d9.chunk.css.map",
-    "static/js/2.aae0a2d7.chunk.js.LICENSE.txt": "/projeto-trybetunes/static/js/2.aae0a2d7.chunk.js.LICENSE.txt"
+    "main.css": "/projeto-carteira-digital/static/css/main.ac4e32d9.chunk.css",
+    "main.js": "/projeto-carteira-digital/static/js/main.e7b5c27f.chunk.js",
+    "main.js.map": "/projeto-carteira-digital/static/js/main.e7b5c27f.chunk.js.map",
+    "runtime-main.js": "/projeto-carteira-digital/static/js/runtime-main.79a1f449.js",
+    "runtime-main.js.map": "/projeto-carteira-digital/static/js/runtime-main.79a1f449.js.map",
+    "static/js/2.aae0a2d7.chunk.js": "/projeto-carteira-digital/static/js/2.aae0a2d7.chunk.js",
+    "static/js/2.aae0a2d7.chunk.js.map": "/projeto-carteira-digital/static/js/2.aae0a2d7.chunk.js.map",
+    "index.html": "/projeto-carteira-digital/index.html",
+    "precache-manifest.28dd14cc1c4296510583b47af14f6e5c.js": "/projeto-carteira-digital/precache-manifest.28dd14cc1c4296510583b47af14f6e5c.js",
+    "service-worker.js": "/projeto-carteira-digital/service-worker.js",
+    "static/css/main.ac4e32d9.chunk.css.map": "/projeto-carteira-digital/static/css/main.ac4e32d9.chunk.css.map",
+    "static/js/2.aae0a2d7.chunk.js.LICENSE.txt": "/projeto-carteira-digital/static/js/2.aae0a2d7.chunk.js.LICENSE.txt"
   },
   "entrypoints": [
-    "static/js/runtime-main.ef49c11a.js",
+    "static/js/runtime-main.79a1f449.js",
     "static/js/2.aae0a2d7.chunk.js",
     "static/css/main.ac4e32d9.chunk.css",
-    "static/js/main.4cece734.chunk.js"
+    "static/js/main.e7b5c27f.chunk.js"
   ]
 }
